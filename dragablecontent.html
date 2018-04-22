@@ -1,0 +1,109 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Statement and drag box</title>
+  <link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+  <link rel="stylesheet" href="style.css" type="text/css">
+   <script src="https://code.jquery.com/jquery-1.12.4.js" type="text/javascript"></script>
+  <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js" type="text/javascript"></script>
+  <script>
+  $( function() {     
+var i;
+for(i=1; i<=5; i++){
+	$( "#draggable"+i).draggable(
+	{
+	appendTo: "#dropable"+i,
+	snapMode:"outer"	
+	}	
+	);
+
+ $('#dropable'+i).droppable({
+    tolerance: 'fit',
+	over: function(event, ui){
+		var stcopy = $(this).text();
+		var dragcopy = $(ui.draggable).text();
+		$('#stStatus').html(stcopy);
+		$('#dragStatus').html('"'+dragcopy+'"');
+		var fullcontent = stcopy + " contains " + '"'+ dragcopy + '"' ;
+		$('#statusContainer').html(fullcontent);
+	},
+	out: function(event, ui){
+		var stcopy = $(this).text();
+		var dragcopy = $(ui.draggable).text();
+		var fullcontent = stcopy + " does not contain " + '"'+ dragcopy + '"' ;
+		$('#statusContainer').html(fullcontent);
+	}
+});
+
+$('#draggable'+i).draggable({
+    revert: 'invalid',
+    stop: function(){
+        $(this).draggable('option','revert', false);
+    }
+});
+
+$('#draggable'+i).droppable({
+    greedy: true,
+    tolerance: 'touch',
+    drop: function(event,ui){
+        ui.draggable.draggable('option','revert',true);
+    }
+});
+}
+});
+  </script>
+</head>
+<body>
+ 
+<div class="container">
+  <h3>Statement List</h3><br/><br/>
+  <div>Current status of Box : <span id="statusContainer"> <span id="stStatus">-----</span> contains <span id="dragStatus">------</span></span></div>
+  
+  <br/><br/>
+  <div id="dropable1" class="dropable ui-widget-content">
+  <p>Stamanet1</p>
+</div>
+<div id="dropable2" class="dropable ui-widget-content">
+  <p>Stamanet2</p>
+</div>
+<div id="dropable3" class="dropable ui-widget-content">
+  <p>Stamanet3</p>
+</div>
+<div id="dropable4" class="dropable ui-widget-content">
+  <p>Stamanet4</p>
+</div>
+<div id="dropable5" class="dropable ui-widget-content">
+  <p>Stamanet5</p>
+</div>
+<br style="clear:both">
+ <br/><br/>
+<div id="draggable1" class="draggable ui-widget-content">
+  <p>This is Drag Box 1</p>
+</div>
+ 
+<div id="draggable2" class="draggable ui-widget-content">
+  <p>This is Drag Box 2</p>
+</div>
+ 
+<div id="draggable3" class="draggable ui-widget-content">
+  <p>This is Drag Box 3</p>
+</div>
+ 
+<div id="draggable4" class="draggable ui-widget-content">
+  <p>This is Drag Box 4</p>
+</div>
+ 
+<div id="draggable5" class="draggable ui-widget-content">
+  <p>This is Drag Box 5</p>
+</div>
+
+
+</div>
+ 
+
+ 
+ 
+</body>
+</html>

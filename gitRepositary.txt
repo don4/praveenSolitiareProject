@@ -1,0 +1,4 @@
+git repositary creation and cloning :-
+git config --global http.sslVerify false ---// to off the certificate issue.
+$ git clone https://github.com/don4/praveenSolitiareProject.git ---/ to clone repositary
+

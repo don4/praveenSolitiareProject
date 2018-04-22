@@ -1,0 +1,28 @@
+@charset "utf-8";
+/* CSS Document */
+body {
+	font-family: Arial, Helvetica, sans-serif;
+}
+
+table {
+	font-size: 1em;
+}
+
+.container{
+	width:1000px;
+	margin:0 auto;
+	font-family:Arial, Helvetica, sans-serif;
+	position:relative;
+	}
+.container h3{
+	text-align:center;
+}
+  .draggable{ width: 90px; height: 80px; padding: 5px; float: left; margin: 0 10px 10px 0; font-size: .9em; }
+  .dropable{ width: 100px; height: 100px; padding: 5px; float: left; margin: 0 10px 10px 0; font-size: .9em; }
+  .ui-widget-header p, .ui-widget-content p { margin: 0; }
+  #snaptarget { height: 140px; }
+.ui-draggable, .ui-droppable {
+	background-position: top;
+}
+
+
