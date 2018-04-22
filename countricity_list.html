@@ -1,0 +1,122 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>country List and City List</title>
+<style type="text/css">
+.container{
+	width:1000px;
+	margin:0 auto;
+	font-family:Arial, Helvetica, sans-serif;
+	}
+.container h3{
+	text-align:center;
+}
+.divLocation,#divCountries, #divCities, .divCategories{
+	float:left;	
+	color:#222;	
+	}
+.divLocation{width:29.8%; background:#ccc; border:1px solid #000;}
+.divCategories{width:70%;}
+#divCountries, #divCities{
+	width:49.6%;
+	border:1px solid #000;	
+	background:#ccc;
+}
+#divCountries.highLight, #divCities.highLight{
+	background:#090;
+	color:#fff;
+	border:1px solid grey;
+}
+</style>
+<script src="https://code.jquery.com/jquery-1.12.4.js" type="text/javascript"></script>
+ <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js" type="text/javascript"></script>
+ <script type="text/javascript">
+ $(document).ready( function(){
+	 $('#source li').draggable(
+	 {
+		// helper : 'clone',
+		helper: function(){
+			return '<b><u>'+$(this).text()+'</u></b>';
+			},
+		 revert : 'invalid'
+		 
+	});
+	$('#divCountries').droppable(
+	{ accept:'li[data-value="country"]',
+	 activeClass:'highLight', 
+	/*activate: function(event, ui){
+			$(this).addClass('highLight');
+			},
+	deactivate : function(event, ui){
+			$(this).removeClass('highLight');
+			},*/
+	 //hoverClass: 'highLight',
+		/*over: function(event, ui){
+			$(this).addClass('highLight');
+			},
+		out: function(event, ui){
+			$(this).removeClass('highLight');
+			},*/
+
+	    drop : function(event, ui){
+			$('#countries').append(ui.draggable);
+			}
+		
+	});
+	$('#divCities').droppable(
+	 { accept:'li[data-value="city"]',
+	 activeClass:'highLight',
+	/* activate: function(event, ui){
+			$(this).addClass('highLight');
+			},
+	deactivate : function(event, ui){
+			$(this).removeClass('highLight');
+			},*/
+	  //hoverClass: 'highLight',
+	 	/*over: function(event, ui){
+			$(this).addClass('highLight');
+			},
+		out: function(event, ui){
+			$(this).removeClass('highLight');
+			},*/
+	 	drop: function(event, ui){
+			$('#cities').append(ui.draggable);
+			}
+		 
+		});
+	});
+ 
+ 
+ </script>
+</head>
+
+<body>
+<div class="container">
+<div class="divLocation">
+<h3>Location List</h3>
+<ul id="source">
+<li data-value="country">USA</li>
+<li data-value="city">New Work</li>
+<li data-value="country">India</li>
+<li data-value="city">Delhi</li>
+<li data-value="country">UK</li>
+<li data-value="city">Channai</li>
+<li data-value="country">Nepal</li>
+</ul>
+</div>
+<div class="divCategories">
+<div id="divCountries">
+<h3>Countries List</h3>
+<ul id="countries">
+
+</ul>
+</div>
+<div id="divCities" >
+<h3>Cities List</h3>
+<ul id="cities"></ul>
+</div>
+</div>
+</div>
+</body>
+</html>
